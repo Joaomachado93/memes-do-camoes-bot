@@ -19,7 +19,6 @@ def main():
 
     service = get_drive_service()
 
-    # Buscar videos
     videos = get_all_videos(service, DRIVE_FOLDER_ID)
     if not videos:
         print("Sem videos na pasta. A sair.")
@@ -27,7 +26,6 @@ def main():
 
     print(f"{len(videos)} video(s) encontrado(s)")
 
-    # Buscar watermark
     watermark_path = download_watermark(service, DRIVE_FOLDER_ID)
     if not watermark_path:
         print("ERRO: watermark.png nao encontrado!")
@@ -47,7 +45,10 @@ def main():
         video_with_wm = apply_watermark(video_path, watermark_path)
         print(f"[{name}] Watermark aplicado")
 
-        media_id = publish_reel(account["username"], account["password"], video_with_wm)
+        media_id = publish_reel(
+            account["username"], account["password"], video_with_wm,
+            session_json=account["session"] if account["session"] else None,
+        )
         print(f"[{name}] Reel publicado! Media ID: {media_id}")
 
         delete_file(service, video_file["id"])

@@ -26,4 +26,5 @@ jobs:
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
           DRIVE_FOLDER_ID: ${{ secrets.DRIVE_FOLDER_ID }}
           IG_MEMESDOCAMOES2_PASS: ${{ secrets.IG_MEMESDOCAMOES2_PASS }}
+          IG_MEMESDOCAMOES2_SESSION: ${{ secrets.IG_MEMESDOCAMOES2_SESSION }}
         run: python test_publish.py

@@ -2,12 +2,11 @@ name: Publish Reels
 
 on:
   schedule:
-    # Horarios em UTC (Portugal continental = UTC+0 no inverno, UTC+1 no verao)
     - cron: '0 8 * * *'   # 8h
     - cron: '0 12 * * *'  # 12h
     - cron: '0 18 * * *'  # 18h
     - cron: '0 21 * * *'  # 21h
-  workflow_dispatch: # Permite execucao manual para testes
+  workflow_dispatch:
 
 jobs:
   publish:
@@ -32,8 +31,13 @@ jobs:
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
           DRIVE_FOLDER_ID: ${{ secrets.DRIVE_FOLDER_ID }}
           IG_MEMESDOCAMOES_PASS: ${{ secrets.IG_MEMESDOCAMOES_PASS }}
+          IG_MEMESDOCAMOES_SESSION: ${{ secrets.IG_MEMESDOCAMOES_SESSION }}
           IG_MEMESDOCAMOES2_PASS: ${{ secrets.IG_MEMESDOCAMOES2_PASS }}
+          IG_MEMESDOCAMOES2_SESSION: ${{ secrets.IG_MEMESDOCAMOES2_SESSION }}
           IG_MEMESDOCAMOES3_PASS: ${{ secrets.IG_MEMESDOCAMOES3_PASS }}
+          IG_MEMESDOCAMOES3_SESSION: ${{ secrets.IG_MEMESDOCAMOES3_SESSION }}
           IG_MEMESDOCAMOES4_PASS: ${{ secrets.IG_MEMESDOCAMOES4_PASS }}
+          IG_MEMESDOCAMOES4_SESSION: ${{ secrets.IG_MEMESDOCAMOES4_SESSION }}
           IG_MEMESDOCAMOES5_PASS: ${{ secrets.IG_MEMESDOCAMOES5_PASS }}
+          IG_MEMESDOCAMOES5_SESSION: ${{ secrets.IG_MEMESDOCAMOES5_SESSION }}
         run: python publish.py

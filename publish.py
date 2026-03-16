@@ -48,6 +48,7 @@ def main():
         name = account["name"]
         username = account["username"]
         password = account["password"]
+        session = account["session"]
 
         if not password:
             print(f"[{name}] Sem password configurada, a saltar...")
@@ -64,8 +65,11 @@ def main():
             video_with_wm = apply_watermark(video_path, watermark_path)
             print(f"[{name}] Watermark aplicado")
 
-            # Publicar Reel
-            media_id = publish_reel(username, password, video_with_wm)
+            # Publicar Reel (usa sessao se disponivel)
+            media_id = publish_reel(
+                username, password, video_with_wm,
+                session_json=session if session else None,
+            )
             print(f"[{name}] Reel publicado! Media ID: {media_id}")
 
             # Apagar video do Drive
